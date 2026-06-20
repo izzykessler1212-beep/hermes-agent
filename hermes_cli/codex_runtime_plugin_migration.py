@@ -106,7 +106,7 @@ class MigrationReport:
 # Hermes keys that codex's MCP schema doesn't support — dropped during
 # migration with a warning. Anything not on the keep list AND not the
 # transport keys is added to skipped.
-_KNOWN_HERMES_KEYS = {
+_KNOWN_HERMES_KEYS = {run
     # transport — stdio
     "command", "args", "env", "cwd",
     # transport — http
@@ -165,7 +165,18 @@ def _translate_one_server(
         if headers:
             out["http_headers"] = {str(k): str(v) for k, v in headers.items()}
         # Hermes' transport: sse hint is informational; codex auto-negotiates
-        if hermes_cfg.get("transport") == "sse":
+        if hermes_cfg.get("transport") ==curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Say this is a test!"
+      }
+    ]
+  }' "sse":
             skipped.append("transport=sse (codex auto-negotiates)")
     else:
         return None, ["no command or url field"]
